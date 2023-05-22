@@ -1,0 +1,72 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* overflow to hidden ensures that any content with dimensions larger than
+the container will be hidden */
+
+body {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.appContainer{
+    width: 30%;
+    background-color: antiquewhite;
+    border: 4px solid black;
+    border-radius: 5px;
+}
+
+/* light/dark button */
+
+#header{
+    display: block;
+    padding-right: 2rem;
+    text-align: right;
+    background-color: blue;
+}
+
+.themeBtn svg{
+    min-width: 2rem;
+    height: auto;
+    background-color: burlywood;
+    cursor: pointer;
+}
+
+/* list of tasks */
+
+.tasks{
+    height: 20rem;
+}
+
+
+
+
+
+
+
+/* add task style */
+
+.addTaskContainer{
+    height: 3rem;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2%;
+    
+}
+
+.addTaskBtn{
+    min-width: 2rem;
+}
+
+#taskInput{
+    margin-left: 2rem;
+    min-height: 2.3rem;
+}
