@@ -15,71 +15,136 @@ body {
     overflow: hidden;
 }
 
+h1{
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+body.darkMode {
+    /* background-color: darkslategrey; */
+    color: whitesmoke;
+}
+
 .appContainer{
-    width: 30%;
-    background-color: antiquewhite;
+    min-width: 30%;
+    height: 30rem;
+    background-color: white;
     border: 4px solid black;
     border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+}
+
+.darkMode .appContainer {
+    background-color: black;
+    color: azure;
+    border: 2px solid rgb(162, 162, 162);
+
 }
 
 /* light/dark button */
 
-#header{
+header{
     display: block;
+    padding-top: 0.5rem;
     padding-right: 2rem;
     text-align: right;
-    background-color: blue;
+    background-color: white;
 }
 
-.themeBtn svg{
+.darkMode header {
+    background-color: black;
+    color: azure;
+
+}
+
+#themeBtn {
+    border: 0;
+    background-color: transparent;
+}
+
+.darkMode #themeBtn{
+    color: white;
+}
+
+#themeBtn svg{
     min-width: 2rem;
     height: auto;
-    background-color: burlywood;
     cursor: pointer;
 }
 
 /* list of tasks */
 
 #tasksContainer{
-    height: 20rem;
+    flex: 1;
     display: block;
-    padding: 5%;
+    padding: 1rem 2rem;
+    /* cria scroll se passar do tamanho */
+    overflow-y: auto;
 }
 
-.newTask{
+.taskItem{
     list-style-type: none;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background-color: white;
 }
 
-.newTaskBtn{
+.taskItemText {
+    color: black;
+}
+
+.taskItemBtn{
     min-width: 14px;
     height: 14px;
-    border: 1px black solid;
+    border: 1px solid black;
     border-radius: 50%;
+    margin-right: 0.5rem;
+    cursor: pointer;
 }
-
-
-
-
 
 
 
 /* add task style */
 
 .addTaskContainer{
-    height: 3rem;
-    background-color: pink;
+    height: 3.5rem;
+    background-color: white;
     display: flex;
-    align-items: center;
+    align-content: flex-start;
+    align-content: center;
     flex-wrap: wrap;
     gap: 2%;
-    
+    overflow: hidden;
+    border-top: 2px double black;
 }
+
+.darkMode .addTaskContainer{
+    border-top: 2px double white;
+    background-color: black;
+}
+
+
 
 .addTaskBtn{
     min-width: 2rem;
+    border: 0;
+    background-color: transparent;
+}
+
+.darkMode .addTaskBtn svg{
+    color: white;
 }
 
 #taskInput{
-    margin-left: 2rem;
+    margin-left: 1rem;
     min-height: 2.3rem;
+    border: 1.5px solid black;
+    border-radius: 3px;
+}
+
+.darkMode #taskInput{
+    border: 1.5px solid white;
 }
