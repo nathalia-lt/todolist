@@ -40,8 +40,21 @@ body {
 
 /* list of tasks */
 
-.tasks{
+#tasksContainer{
     height: 20rem;
+    display: block;
+    padding: 5%;
+}
+
+.newTask{
+    list-style-type: none;
+}
+
+.newTaskBtn{
+    min-width: 14px;
+    height: 14px;
+    border: 1px black solid;
+    border-radius: 50%;
 }
 
 
