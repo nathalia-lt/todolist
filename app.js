@@ -1,76 +1,93 @@
 
-import { getFromStorage, setToStorage } from "./services/localStorage.js";
-
+import TasksModel from "./TasksModel.js"; 
+import TaskView from "./taskView.js";
 
 // Vaviables:
 const form = document.querySelector('form');
-const taskInput = document.getElementById('taskInput');
-const taskContainer = document.getElementById('taskContainer')
-const taskList = document.getElementById('tasksList') //ul
 const themeBtn = document.getElementById('themeBtn');
-const body = document.querySelector('body')
 
+const tasks = new TasksModel('tasks')
+const view = new TaskView(removeTaskCb)
 
-//se eu nao achar eu tenho uma array em branco
-//getFromStorage('') || []
+view.render(tasks.getTasks())
 
-
-let itemList = getFromStorage('item') || []
-//agora eu tenho que salvar no storage a cada vez que eu adiciono no carrinho
-console.log('lista fora', itemList)
-
+function removeTaskCb(taskName){
+    tasks.removeTask(taskName)
+}
 
 // eu quero adicionar o que eu escrever na lista
 //pra isso eu uso um event listener.
 //eu quero 'armazenar' o que o user escreveu no form em uma 'div'
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const taskToAdd = taskInput.value 
+    const taskInput = document.getElementById('taskInput');
+    const taskName = taskInput.value 
     taskInput.value = ''
-    console.log(taskToAdd)
+    console.log(taskName)
     
-    const li = document.createElement('li')
-    const button = document.createElement('button')
-    const text = document.createElement('span')
-    li.classList.add('taskItem')
-    button.classList.add('taskItemBtn')
-    text.classList.add('taskItemText')
-    text.innerText = taskToAdd
-    li.append(button)
-    li.append(text)
-    taskList.append(li)
-
-
     //adicionando o input do meu user em uma array, assim posso adicionar no meu storage
-    itemList.push(taskToAdd)
+    try {
+        tasks.addTask(taskName)
+        view.renderOne(taskName)
+    } catch (error) {
+        alert(error.message)
+    }    
+})
 
-    //agora eu quero salvar no meu storage. 
-    //o primeiro valor é como eu quero salvar no meu storage (string), e o segundo parametro, é o valor que que quero salvar
-    setToStorage('item', itemList)
-    
-
-    button.addEventListener('click', () => {
-        li.remove()
-    })
-    console.log(li)
+//funcao toggle se tiver ele tira, ele tira e coloca a class no html, nesse caso
+themeBtn.addEventListener('click', () => {
+    const body = document.querySelector('body')
+    body.classList.toggle('darkMode')
 })
 
 
 
-//funcao toggle se tiver ele tira, ele tira e coloca a class no html, nesse caso
-    themeBtn.addEventListener('click', () => {
-        body.classList.toggle('darkMode')
-    })
 
 
-    // local storage
-    //web storage API provided by the browser
-    //a way to persist data between sessions, as well the open and close of 
-    //the browser. Everything is provided by the browser. We just need to use the right method.
 
-    //the method names are: setItem, getItem, removeItem, clear
 
-    //localStorage.setItem('name of the key', 'value');
-    //becareful to not override the value of the key
 
-    // const name = localStorage.getItem('which key are we looking for');
+
+
+
+
+
+    //ModalViewControler
+    //e uma maneira de estruturar seu codigo para separar funcionalidades
+
+
+    //tudo que e relacionado a atualizacao da tela seria view
+
+    //tudo que e funcao que e do seu objeto de negocio, adicionar, 
+    //retirar, apagar. fica no model, tudo que altera fica em um lugar.
+
+
+    //controller e a interface que une o model e o view. normamente pega o click do 
+    //usuario e vai falar pro view fazer alguma coisa. controla o fluxo.
+    //pega a solicitacao do usuario e manda a solicitacao pro model e view executarem
+
+
+    //podemos organizar o nosso codigo em funcoes ou em objetos.
+    //no JS ele permite trabalhar nas duas formas, escolher como queremos.
+    //entao para fazermos oritado ao objeto nos criamos classe.
+    //classe seria uma abstracao dos objetos, e os objetos vao ser instances da classe. 
+    //a classe seria uma abstracao e o objeto o que conseguimos manipular.
+
+    //classes sao formadas por duas coisas: proprieadades (valores internos) e metodos (funcoes que a gente executa)
+
+    // class copo {
+    //     constructor( aqui eu coloco as propriedades do copo ex (cor, tamanho)){
+    //         this.cor = cor; (a cor do copo vai ser a cor que vou receber no construtor)
+    //         this.tamanho = tamanho;
+    //     }
+    //     encher(porcentagem){
+    //         this.copo += porcentagem
+    //     }
+    // }
+
+    // criando um copo
+    // const copo1 = new copo (azul, pequeno)
+
+    // const cor1 = copo1.cor
+
+    //copo1.encher(50)

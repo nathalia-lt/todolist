@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background-color: pink;
 }
 
 h1{
@@ -90,6 +91,8 @@ header{
     padding: 0.5rem;
     margin: 0.5rem 0;
     background-color: white;
+    opacity: 1;
+    transition: opacity 1000ms ease;
 }
 
 .taskItemText {
@@ -126,12 +129,23 @@ header{
     background-color: black;
 }
 
+.footer-container{
+    width: 100%;
+    height: 4rem;
+    background-color: lightblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
 
 
 .addTaskBtn{
     min-width: 2rem;
     border: 0;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .darkMode .addTaskBtn svg{
@@ -143,8 +157,23 @@ header{
     min-height: 2.3rem;
     border: 1.5px solid black;
     border-radius: 3px;
+    flex: 1;
+
 }
 
 .darkMode #taskInput{
     border: 1.5px solid white;
+}
+
+
+.fadeOut{
+    opacity: 0;
+}
+
+
+@media only screen and(max-width: 800px) and (min-width: 650px){
+    .appContainer{
+        min-width: 60%;
+        font-size: 30px;
+    }
 }

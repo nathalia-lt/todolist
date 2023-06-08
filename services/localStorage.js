@@ -34,5 +34,9 @@ function setToStorage(key, value){
 export {getFromStorage, setToStorage}
 
 //agora eu vou la na no meu app.js
+//let itemList = getFromStorage('item') || []
+//agora eu tenho que salvar no storage a cada vez que eu adiciono no carrinho
+//console.log('lista fora', itemList)
+
 //
 //e pego a array de inputs do meu user e settostorage ex:  setToStorage('item', itemList)
